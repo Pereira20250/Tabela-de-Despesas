@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Adicionar Despesa</title>
+  <style>
+    body {
+      font-family: Arial;
+      margin: 40px;
+      background-color: green;
+    }
+    form {
+      display: flex;
+      gap: 10px;
+    }
+    h2 {
+        color: blue
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      background-color: yellow;
+      color: blue
+    }
+    a {
+      display: block;
+      margin-top: 20px;
+      color: blue;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <h2>Adicionar Nova Despesa</h2>
+  <form id="form-despesa">
+    <input type="text" id="descricao" placeholder="Descrição" required>
+    <input type="number" id="valor" placeholder="Valor (R$)" required>
+    <input type="date" id="data" required>
+    <button type="submit">Salvar</button>
+  </form>
+  <a href="index.html">⬅ Voltar ao Menu</a>
+
+  <script>
+    const form = document.getElementById('form-despesa');
+    let despesas = JSON.parse(localStorage.getItem('despesas')) || [];
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const descricao = document.getElementById('descricao').value;
+      const valor = document.getElementById('valor').value;
+      const data = document.getElementById('data').value;
+
+      despesas.push({ descricao, valor, data });
+
+      localStorage.setItem('despesas', JSON.stringify(despesas));
+      alert('Despesa adicionada com sucesso!');
+      form.reset();
+    });
+  </script>
+</body>
+</html>

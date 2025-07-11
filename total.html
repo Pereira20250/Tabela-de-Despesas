@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Total de Gastos</title>
+  <style>
+    body {
+      font-family: Arial;
+      margin: 40px;
+      text-align: center;
+      background-color: green;
+    }
+    h2 {
+      font-size: 24px;
+      color: blue;
+    }
+    .valor {
+      font-size: 32px;
+      color: yellow;
+      margin-top: 20px;
+    }
+    a {
+      display: inline-block;
+      margin-top: 30px;
+      text-decoration: none;
+      color: blue
+    }
+  </style>
+</head>
+<body>
+  <h2>Total de Gastos</h2>
+  <div class="valor" id="total"></div>
+  <a href="index.html">⬅ Voltar ao Menu</a>
+
+  <script>
+    const despesas = JSON.parse(localStorage.getItem('despesas')) || [];
+    const total = despesas.reduce((soma, item) => soma + parseFloat(item.valor), 0);
+    document.getElementById('total').textContent = `R$ ${total.toFixed(2)}`;
+  </script>
+</body>
+</html>

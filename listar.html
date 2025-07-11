@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Despesas</title>
+  <style>
+    body {
+      font-family: Arial;
+      margin: 40px;
+      background-color: green;
+    }
+    h2 {
+        color: blue;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: yellow;
+      color: blue;
+    }
+    th, td {
+      padding: 12px;
+      border: 1px solid #ccc;
+    }
+    .remove-btn {
+      background-color: blue;
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      cursor: pointer;
+    }
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: blue
+    }
+  </style>
+</head>
+<body>
+  <h2>Lista de Despesas</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Descrição</th>
+        <th>Valor (R$)</th>
+        <th>Data</th>
+        <th>Ação</th>
+      </tr>
+    </thead>
+    <tbody id="tabela-despesas"></tbody>
+  </table>
+  <a href="index.html">⬅ Voltar ao Menu</a>
+
+  <script>
+    const tabela = document.getElementById('tabela-despesas');
+    let despesas = JSON.parse(localStorage.getItem('despesas')) || [];
+
+    function salvar() {
+      localStorage.setItem('despesas', JSON.stringify(despesas));
+    }
+
+    function renderizar() {
+      tabela.innerHTML = '';
+      despesas.forEach((despesa, index) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${despesa.descricao}</td>
+          <td>R$ ${parseFloat(despesa.valor).toFixed(2)}</td>
+          <td>${despesa.data}</td>
+          <td><button class="remove-btn" onclick="remover(${index})">Remover</button></td>
+        `;
+        tabela.appendChild(tr);
+      });
+    }
+
+    function remover(index) {
+      despesas.splice(index, 1);
+      salvar();
+      renderizar();
+    }
+
+    renderizar();
+  </script>
+</body>
+</html>

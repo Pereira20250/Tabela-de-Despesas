@@ -1,0 +1,25 @@
+    body {
+      font-family: 'Times New Roman', Times, serif, sans-serif;
+      text-align: center;
+      margin-top: 80px;
+      background-color: green;
+    }
+    h1 {
+        color: blue;
+    }
+    a {
+      display: block;
+      margin: 20px;
+      font-size: 20px;
+      text-decoration: none;
+      color: blue;
+      background-color: yellow;
+      padding: 12px;
+      border-radius: 8px;
+      width: 200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    footer {
+        color: blue;
+    }
